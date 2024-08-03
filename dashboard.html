@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driving Behavior Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+        }
+        .header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        .summary {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .summary h2 {
+            color: #333;
+            margin: 0;
+            font-size: 2em;
+            text-align: center;
+        }
+        .summary p {
+            font-size: 18px;
+            color: #555;
+            margin: 10px 0;
+            text-align: center;
+        }
+        .summary .stat {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .summary .stat.smooth-driving {
+            color: #4CAF50;
+        }
+        .summary .stat.sharp-turns {
+            color: #FFC107;
+        }
+        .summary .stat.sudden-braking {
+            color: #FF5722;
+        }
+        .summary .stat.sudden-acceleration {
+            color: #3F51B5;
+        }
+        .result {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        .result h2 {
+            color: #333;
+            margin: 0;
+            font-size: 2em;
+            text-align: center;
+        }
+        .result p {
+            font-size: 18px;
+            color: #555;
+            margin: 10px 0;
+            text-align: center;
+        }
+        .result .stat {
+            font-size: 24px;
+            font-weight: bold;
+            display: inline-block;
+            min-width: 150px;
+        }
+        .result .stat.positive {
+            color: #4CAF50;
+        }
+        .result .stat.negative {
+            color: #FF5722;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Driving Behavior Dashboard</h1>
+    </div>
+    <div class="container">
+        <div class="summary">
+            <h2>Trip Overview</h2>
+            <p><strong>Distance Traveled:</strong> <span class="stat">{{ distance_traveled | round(3) }} km</span></p>
+            <p><strong>Trip Duration:</strong> <span class="stat">{{ trip_duration }}</span></p>
+            <p><strong>Smooth Driving Duration:</strong> <span class="stat smooth-driving">{{ smooth_driving_duration | round(3) }} minutes</span></p>
+            <p><strong>Sharp Turns:</strong> <span class="stat sharp-turns">{{ sharp_turns | round(3) }} minutes</span></p>
+            <p><strong>Sudden Braking:</strong> <span class="stat sudden-braking">{{ sudden_braking | round(3) }} minutes</span></p>
+            <p><strong>Sudden Acceleration:</strong> <span class="stat sudden-acceleration">{{ sudden_acceleration | round(3) }} minutes</span></p>
+        </div>
+        <div class="result">
+            <h2>Overall Driving Score</h2>
+            <p><strong>Total Score:</strong> <span class="stat {{ 'positive' if total_score >= 1 else 'negative' }}">{{ total_score | round(3) }}</span></p>
+            <p><strong>Driving Behavior:</strong></p>
+            <p class="stat">{{ driving_behavior }}</p>
+        </div>
+    </div>
+</body>
+</html>
